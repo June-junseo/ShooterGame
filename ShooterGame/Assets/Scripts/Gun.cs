@@ -22,6 +22,9 @@ public class Gun : MonoBehaviour
 
         lineRenderer.positionCount = 2;
         lineRenderer.enabled = false;
+        lineRenderer.startWidth = 0.1f;
+        lineRenderer.endWidth = 0.05f;
+
     }
 
     private void Update()
@@ -57,8 +60,8 @@ public class Gun : MonoBehaviour
             {
                 Instantiate(hitEffect, hit.point, Quaternion.LookRotation(hit.normal));
             }
+            StartCoroutine(ShotEffect(hitPosition));
         }
-        StartCoroutine(ShotEffect(hitPosition));
     }
 
     private IEnumerator ShotEffect(Vector3 hitPosition)
@@ -73,7 +76,6 @@ public class Gun : MonoBehaviour
         yield return new WaitForSeconds(0.2f);
 
         lineRenderer.enabled = false;
-
 
     }
 
